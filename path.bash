@@ -49,7 +49,7 @@ function std_path_append {
 
   local -a path
   IFS=':' read -a path <<<"$PATH"
-  std_path_remove_or_verify "$directory" "$override" || return $std_true
+  __std_path_remove_or_verify "$directory" "$override" || return $std_true
   path+=("$directory")
   export PATH="$(std_array_join : path)"
 }
@@ -60,7 +60,7 @@ function std_path_prepend {
 
   local -a path
   IFS=':' read -a path <<<"$PATH"
-  std_path_remove_or_verify "$directory" "$override" || return $std_true
+  __std_path_remove_or_verify "$directory" "$override" || return $std_true
   path=("$directory" "${path[@]}")
   export PATH="$(std_array_join : path)"
 }
